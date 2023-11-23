@@ -6,6 +6,8 @@ import (
 	"log"
 	"product-management-app/database"
 	"time"
+
+	_ "github.com/go-sql-driver/mysql" // Uncomment this line for MySQL
 )
 
 // Worker performs image analysis in the background.
@@ -79,5 +81,3 @@ func (w *Worker) performImageAnalysis(product *database.Product) error {
 
 	return nil
 }
-
-// Implement other functions as needed.

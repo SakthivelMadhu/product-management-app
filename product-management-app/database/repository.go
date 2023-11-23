@@ -6,7 +6,7 @@ import (
 	"database/sql"
 	"fmt"
 
-	_ "github.com/lib/pq" // Import your SQL driver, replace with your database driver
+	_ "github.com/go-sql-driver/mysql" // Uncomment this line for MySQL
 )
 
 // Repository handles database operations.
@@ -17,6 +17,25 @@ type Repository struct {
 // NewRepository creates a new instance of the Repository.
 func NewRepository(db *sql.DB) *Repository {
 	return &Repository{db}
+}
+
+// InitDB initializes the MySQL database connection.
+func InitDB() (*sql.DB, error) {
+	// Replace the connection details with your actual MySQL configuration
+	db, err := sql.Open("mysql", "root:Sakthivel1402!@tcp(127.0.0.1:3306)/product_management_app")
+	if err != nil {
+		return nil, fmt.Errorf("failed to open database connection: %v", err)
+	}
+
+	// Check if the database connection is working
+	err = db.Ping()
+	if err != nil {
+		return nil, fmt.Errorf("failed to ping database: %v", err)
+	}
+
+	fmt.Println("Connected to the database")
+
+	return db, nil
 }
 
 // CreateUser creates a new user in the database.
@@ -89,4 +108,41 @@ func (r *Repository) GetProduct(productID int) (*Product, error) {
 	}
 
 	return product, nil
+}
+
+// GetProductsWithoutCompressedImages retrieves products without compressed images from the database.
+func (r *Repository) GetProductsWithoutCompressedImages() ([]Product, error) {
+	// Example SQL query (for MySQL)
+	query := `
+        SELECT product_id, user_id, product_name, product_description, product_images, product_price, created_at, updated_at
+        FROM products
+        WHERE compressed_product_images IS NULL OR compressed_product_images = '{}'
+    `
+
+	rows, err := r.db.Query(query)
+	if err != nil {
+		return nil, fmt.Errorf("error querying products without compressed images: %v", err)
+	}
+	defer rows.Close()
+
+	var products []Product
+
+	for rows.Next() {
+		var product Product
+		err := rows.Scan(
+			&product.ProductID, &product.UserID, &product.ProductName, &product.ProductDescription,
+			&product.ProductImages, &product.ProductPrice, &product.CreatedAt, &product.UpdatedAt,
+		)
+		if err != nil {
+			return nil, fmt.Errorf("error scanning product row: %v", err)
+		}
+
+		products = append(products, product)
+	}
+
+	if err := rows.Err(); err != nil {
+		return nil, fmt.Errorf("error iterating over product rows: %v", err)
+	}
+
+	return products, nil
 }

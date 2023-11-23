@@ -28,3 +28,19 @@ func SetupRoutes(db *sql.DB) *mux.Router {
 
 	return router
 }
+
+// NewRouter sets up the API routes.
+func NewRouter(repo *database.Repository) *mux.Router {
+	router := mux.NewRouter()
+
+	// Create an instance of ProductHandler
+	productHandler := NewProductHandler(repo)
+
+	// Define your API routes using Gorilla Mux
+	router.HandleFunc("/products", productHandler.CreateProductHandler).Methods("POST")
+	router.HandleFunc("/users/{userID}", productHandler.GetUserHandler).Methods("GET")
+
+	// Add more routes as needed
+
+	return router
+}

@@ -9,6 +9,9 @@ import (
 	"product-management-app/api"
 	"product-management-app/database"
 	"product-management-app/image_analysis"
+	"time"
+
+	_ "github.com/go-sql-driver/mysql" // Uncomment this line for MySQL
 )
 
 func main() {
@@ -18,8 +21,11 @@ func main() {
 		log.Fatal(err)
 	}
 
+	// Initialize repository
+	repo := database.NewRepository(db)
+
 	// Set up API routes
-	router := api.NewRouter(db)
+	router := api.NewRouter(repo)
 
 	// Start API server
 	go func() {
@@ -27,7 +33,8 @@ func main() {
 	}()
 
 	// Start image analysis worker
-	go image_analysis.StartWorker()
+	worker := image_analysis.NewWorker(repo)
+	go worker.StartWorker(time.Second * 10) // Adjust the interval as needed
 
 	fmt.Println("Server is running on :8080")
 	select {}
