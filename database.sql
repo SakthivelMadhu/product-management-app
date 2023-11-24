@@ -1,6 +1,4 @@
--- Create a database
-CREATE DATABASE IF NOT EXISTS your_database_name;
-USE your_database_name;
+
 
 CREATE TABLE Users (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -24,22 +22,15 @@ CREATE TABLE Products (
 );
 
 
--- Create an index on the user_id column in the products table for faster retrieval
-CREATE INDEX idx_user_id ON products (user_id);
-
--- Add foreign key constraint between products and users
-ALTER TABLE products
-ADD CONSTRAINT fk_user_id
-FOREIGN KEY (user_id) REFERENCES users(id);
+-- Insert data into Users table
+INSERT INTO Users (name, mobile, latitude, longitude) VALUES
+('John Doe', '+1234567890', 37.7749, -122.4194),
+('Jane Doe', '+9876543210', 40.7128, -74.0060),
+('Alice Johnson', '+1122334455', 34.0522, -118.2437);
 
 
-INSERT INTO users (name, mobile, latitude, longitude)
-VALUES
-    ('John Doe', '1234567890', 40.7128, -74.0060),
-    ('Jane Smith', '9876543210', 37.7749, -122.4194);
-
-
-INSERT INTO products (user_id, product_name, product_description, product_images, product_price)
-VALUES
-    (1, 'Product A', 'Description A', '["image1.jpg", "image2.jpg"]', 19.99),
-    (2, 'Product B', 'Description B', '["image3.jpg", "image4.jpg"]', 29.99);
+-- Insert data into Products table
+INSERT INTO Products (product_name, product_description, product_images, product_price, compressed_product_images) VALUES
+('Laptop', 'High-performance laptop', '["laptop_image1.jpg", "laptop_image2.jpg"]', 999.99, '["compressed_laptop_image1.jpg", "compressed_laptop_image2.jpg"]'),
+('Smartphone', 'Latest smartphone model', '["phone_image1.jpg", "phone_image2.jpg"]', 599.99, '["compressed_phone_image1.jpg", "compressed_phone_image2.jpg"]'),
+('Coffee Maker', 'Automatic coffee maker', '["coffeemaker_image1.jpg", "coffeemaker_image2.jpg"]', 149.99, '["compressed_coffeemaker_image1.jpg", "compressed_coffeemaker_image2.jpg"]');
