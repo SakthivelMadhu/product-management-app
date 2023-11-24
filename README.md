@@ -46,6 +46,10 @@ go mod download
 go run main.go
 ```
 
+5. Deployment on server:
+```bash
+http://localhost:8080
+```
 ## Dependencies
 
 This project relies on the following libraries, frameworks, and tools:
