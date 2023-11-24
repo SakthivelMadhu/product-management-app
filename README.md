@@ -28,3 +28,39 @@ This is a comprehensive Product Management App implemented in Go, designed to ha
 ```bash
 git clone https://github.com/SakthivelMadhu/product-management-app.git
 ```
+2. Navigate to the project directory:
+
+```bash
+cd Product_Management_App
+```
+
+3. Install dependencies:
+
+```bash
+go mod download
+```
+
+4. Run the application:
+
+```bash
+go run main.go
+```
+
+## Dependencies
+
+This project relies on the following libraries, frameworks, and tools:
+
+- **Gorilla Mux:** A powerful URL router and dispatcher for Go.  
+  https://github.com/gorilla/mux
+
+- **GORM:** A fantastic ORM library for Golang, simplifying database operations.  
+   https://github.com/go-gorm/gorm
+
+- **MySQL Driver for GORM:** The MySQL database driver used in conjunction with GORM.  
+    https://github.com/go-sql-driver/mysql
+
+
+
+
+
+
