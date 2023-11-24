@@ -1,5 +1,3 @@
-# product-management-app
-
 # Product Management App
 
 This is a comprehensive Product Management App implemented in Go, designed to handle various aspects of product creation, modification, and analysis.
@@ -28,4 +26,5 @@ This is a comprehensive Product Management App implemented in Go, designed to ha
 1. Clone the repository:
 
 ```bash
-git clone 
+git clone https://github.com/SakthivelMadhu/product-management-app.git
+```
