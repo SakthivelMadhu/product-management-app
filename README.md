@@ -60,6 +60,12 @@ This project relies on the following libraries, frameworks, and tools:
     https://github.com/go-sql-driver/mysql
 
 
+## ERDiagram :
+![dbimg](https://github.com/SakthivelMadhu/product-management-app/assets/62326876/186bb730-baf1-40ee-835c-05f30c41cc7a)
+
+
+
+
 
 
 
