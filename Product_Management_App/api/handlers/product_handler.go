@@ -68,7 +68,7 @@ func (ph *ProductHandler) CreateProduct(w http.ResponseWriter, r *http.Request) 
 	// ph = handlers.InitializeProductHandler()
 
 	// Simulate original images
-	originalImages := []string{"https://example.com/image1.jpg", "https://example.com/image2.jpg"}
+	originalImages := []string{"https://stat.overdrive.in/wp-content/odgallery/2022/07/63248_2022_Suzuki_Brezza_1.jpg", "https://stat.overdrive.in/wp-content/odgallery/2018/08/46307_Maruti_Suzuki_Vitara_Breeza_003.JPG"}
 
 	// Simulate product ID
 	productID := 1
