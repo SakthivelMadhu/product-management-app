@@ -19,7 +19,7 @@ This is a comprehensive Product Management App implemented in Go, designed to ha
 ### Prerequisites
 
 - Go installed on your machine
-- Database (Specify the database and provide setup instructions if needed)
+- Database (choose any)
 
 ### Installation
 
