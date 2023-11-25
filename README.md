@@ -37,7 +37,7 @@ cd Product_Management_App
 3. Install dependencies:
 
 ```bash
-go mod download
+go get ./...
 ```
 
 4. Run the application:
